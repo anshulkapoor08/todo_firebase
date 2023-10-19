@@ -50,7 +50,7 @@ class _AuthFormState extends State<AuthForm> {
                       labelStyle: GoogleFonts.roboto(),
                     ),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 30.0,
                   ),
                   TextFormField(
@@ -74,7 +74,7 @@ class _AuthFormState extends State<AuthForm> {
                       labelStyle: GoogleFonts.roboto(),
                     ),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 30.0,
                   ),
                   TextFormField(
@@ -99,14 +99,41 @@ class _AuthFormState extends State<AuthForm> {
                     ),
                   ),
                   Container(
-                      padding: EdgeInsets.all(15),
+                      padding: const EdgeInsets.all(15),
                       height: 80,
                       width: double.infinity,
                       child: ElevatedButton(
-                        
-                        onPressed: () {},
-                        child: null,
-                      ))
+                          style: ButtonStyle(
+                              shape: MaterialStateProperty.all<
+                                      RoundedRectangleBorder>(
+                                  RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(18.0),
+                                      side: const BorderSide(
+                                          color: Colors.white70)))),
+                          onPressed: () {},
+                          child: isLoginPage
+                              ? Text(
+                                  'Login',
+                                  style: GoogleFonts.roboto(fontSize: 16),
+                                )
+                              : Text(
+                                  'Signup',
+                                  style: GoogleFonts.roboto(fontSize: 16),
+                                ))),
+                  const SizedBox(
+                    height: 30.0,
+                  ),
+                  Container(
+                    child: TextButton(
+                        onPressed: () {
+                          setState(() {
+                            isLoginPage = !isLoginPage;
+                          });
+                        },
+                        child: isLoginPage
+                            ? const Text('Not a member?')
+                            : const Text('Already a member?')),
+                  )
                 ],
               ),
             )
